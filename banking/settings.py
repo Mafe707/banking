@@ -11,6 +11,11 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+from environs import Env
+
+#Start env variables
+env = Env()
+env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -76,11 +81,11 @@ WSGI_APPLICATION = 'banking.wsgi.application'
 DATABASES = {
    'local': {
         'ENGINE': 'django.db.backends.postgresql',
-        'HOST': 'localhost',
-        'NAME': 'banking',
-        'USER': 'postgres',
-        'PASSWORD': 'unicesmag',
-        'PORT': '5433',
+        'HOST': env('DB_HOST', default='localhost'),
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'PORT': env('DB_PORT', default='5433'),
     },
    
     'default': {
