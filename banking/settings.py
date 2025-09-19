@@ -79,6 +79,7 @@ WSGI_APPLICATION = 'banking.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
+
    'local': {
         'ENGINE': 'django.db.backends.postgresql',
         'HOST': env('DB_HOST', default='localhost'),
@@ -88,6 +89,16 @@ DATABASES = {
         'PORT': env('DB_PORT', default='5433'),
     },
    
+    'supabase': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'HOST': env('SUPABASE_HOST'),
+            'NAME': env('SUPABASE_NAME'),
+            'USER': env('SUPABASE_USER'),
+            'PASSWORD': env('SUPABASE_PASSWORD'),
+            'PORT': env('SUPABASE_PORT'),
+
+    },
+
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'banking.sqlite3',
