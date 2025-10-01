@@ -5,12 +5,13 @@ from django.db import models
 class Countries(models.Model):
     name = models.CharField(max_length=50)
     abrev = models.CharField(max_length=5)
+    status = models.BooleanField(default=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     deleted_at = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
-        return f"{self.name} {self.abrev}"
+        return f"{self.name} {self.abrev} {'Activate' if self.status else 'Inactive'}"
 
 class Departments(models.Model):
     name = models.CharField(max_length=50)
